@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mehwar Services - Tilted Slide Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+    }
+    .slider {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      perspective: 1200px;
+    }
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: rotateX(60deg) translateY(100%);
+      opacity: 0;
+      transition: transform 1.2s ease, opacity 1s ease;
+    }
+    .slide.active {
+      transform: rotateX(50deg) translateY(0);
+      opacity: 1;
+      z-index: 2;
+    }
+    .overlay-content {
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 12px;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateX(0deg);
+      z-index: 3;
+    }
+    .overlay-content h2 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .overlay-content p {
+      font-size: 1.1rem;
+    }
+    .arrow {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+      z-index: 10;
+    }
+    .arrow img {
+      width: 20px;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -10px); }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="slider">
+    <div class="slide active" style="background-image: url('assets/img/app.png');">
+      <div class="overlay-content">
+        <h2>App Development</h2>
+        <p>We craft sleek, responsive mobile apps for Android & iOS with rich interfaces and user-friendly designs.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('assets/img/web.png');">
+      <div class="overlay-content">
+        <h2>Website Development</h2>
+        <p>Custom websites tailored to your brand. Fast, responsive, and built for performance.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('assets/img/cloud.png');">
+      <div class="overlay-content">
+        <h2>Cloud Integration</h2>
+        <p>Secure and scalable cloud storage & integration tailored for your enterprise growth.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('assets/img/branding.png');">
+      <div class="overlay-content">
+        <h2>Digital Branding</h2>
+        <p>Creative branding and design that brings your business to life with style and impact.</p>
+      </div>
+    </div>
+    <div class="arrow" onclick="nextSlide()">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/down--v1.png" alt="Next" />
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function nextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+  </script>
+</body>
+</html>
