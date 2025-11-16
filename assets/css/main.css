@@ -1352,75 +1352,146 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Team Section
+# Team Section - Fixed Perfect Layout
 --------------------------------------------------------------*/
 .team .member {
   position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.team .member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .team .member .pic {
+  position: relative;
   overflow: hidden;
-  margin-bottom: 50px;
+  height: 300px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.team .member .pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.3s ease;
+}
+
+.team .member:hover .pic img {
+  transform: scale(1.05);
 }
 
 .team .member .member-info {
-  background-color: var(--surface-color);
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  bottom: -50px;
-  left: 20px;
-  right: 20px;
-  padding: 20px 15px;
-  overflow: hidden;
-  transition: 0.5s;
-}
-
-.team .member h4 {
-  font-weight: 700;
-  margin-bottom: 10px;
-  font-size: 16px;
   position: relative;
-  padding-bottom: 10px;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  padding: 25px 20px;
+  background: #fff;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: none;
 }
 
-.team .member h4::after {
-  content: "";
-  position: absolute;
+.team .member .member-info h4 {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #040677;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.team .member .member-info h4::after {
+  display: none;
+}
+
+.team .member .member-info span {
   display: block;
-  width: 50px;
-  height: 1px;
-  background: color-mix(in srgb, var(--default-color), transparent 60%);
-  bottom: 0;
-  left: 0;
+  font-size: 14px;
+  color: #6c757d;
+  font-style: normal;
+  margin-bottom: 15px;
+  min-height: 42px;
+  line-height: 1.5;
 }
 
-.team .member span {
-  font-style: italic;
-  display: block;
-  font-size: 13px;
+.team .member .member-info .social {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
 }
 
-.team .member .social {
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
+.team .member .member-info .social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #f8f9fa;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: #040677;
 }
 
-.team .member .social a {
-  transition: color 0.3s;
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+.team .member .member-info .social a:hover {
+  background: #1acc8d;
+  color: #fff;
+  transform: translateY(-3px);
 }
 
-.team .member .social a:hover {
-  color: var(--accent-color);
-}
-
-.team .member .social i {
+.team .member .member-info .social a i {
   font-size: 16px;
-  margin: 0 2px;
+  margin: 0;
 }
 
+/* Ensure equal height cards */
+.team .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team .row > [class*='col-'] {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .team .member .pic {
+    height: 250px;
+  }
+  
+  .team .member .member-info h4 {
+    font-size: 16px;
+    min-height: auto;
+  }
+  
+  .team .member .member-info span {
+    font-size: 13px;
+    min-height: auto;
+  }
+}
 /*--------------------------------------------------------------
 # Pricing Section
 --------------------------------------------------------------*/
