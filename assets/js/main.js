@@ -183,3 +183,126 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+/* ==========================================
+   PARALLAX SCROLL EFFECT - JavaScript
+   ========================================== */
+
+// Parallax effect for hero section
+window.addEventListener('scroll', function() {
+  const hero = document.querySelector('#hero .hero-bg');
+  if (hero) {
+    const scrolled = window.pageYOffset;
+    const rate = scrolled * 0.5; // Parallax speed
+    hero.style.transform = 'translate3d(0, ' + rate + 'px, 0)';
+  }
+});
+
+/* ==========================================
+   SMOOTH SCROLL & SECTION ANIMATIONS - JavaScript
+   ========================================== */
+
+// Animate sections on scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const sectionObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animated');
+    }
+  });
+}, observerOptions);
+
+// Observe all sections
+document.querySelectorAll('section').forEach(section => {
+  sectionObserver.observe(section);
+});
+
+// Enhanced smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    
+    // Skip if it's just "#" or empty
+    if (href === '#' || href === '') return;
+    
+    e.preventDefault();
+    
+    const target = document.querySelector(href);
+    if (target) {
+      const header = document.querySelector('#header');
+      const headerHeight = header ? header.offsetHeight : 0;
+      const targetPosition = target.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+/* ==========================================
+   BONUS: MAGNETIC CURSOR EFFECT
+   ========================================== */
+
+// Add magnetic effect to cards
+const magneticElements = document.querySelectorAll('.features-item, .team .member, .about .icon-box');
+
+magneticElements.forEach(elem => {
+  elem.addEventListener('mousemove', function(e) {
+    const rect = elem.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    elem.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.02)`;
+  });
+  
+  elem.addEventListener('mouseleave', function() {
+    elem.style.transform = 'translate(0, 0) scale(1)';
+  });
+});
+
+/* ==========================================
+   GALLERY SCROLL ANIMATIONS - JavaScript
+   ========================================== */
+
+// Animate gallery items on scroll (safe init + fallback)
+(function() {
+  'use strict';
+
+  function initGalleryAnimations() {
+    const galleryItems = document.querySelectorAll('.gallery .gallery-item');
+
+    if (!galleryItems.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const galleryObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            galleryObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      galleryItems.forEach(item => galleryObserver.observe(item));
+    } else {
+      // Fallback for older browsers: reveal all items
+      galleryItems.forEach(item => item.classList.add('animate-in'));
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGalleryAnimations);
+  } else {
+    initGalleryAnimations();
+  }
+
+})();

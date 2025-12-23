@@ -1,130 +1,689 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mehwar Services - Tilted Slide Showcase</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-    }
-    .slider {
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-      perspective: 1200px;
-    }
-    .slide {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      transform: rotateX(60deg) translateY(100%);
-      opacity: 0;
-      transition: transform 1.2s ease, opacity 1s ease;
-    }
-    .slide.active {
-      transform: rotateX(50deg) translateY(0);
-      opacity: 1;
-      z-index: 2;
-    }
-    .overlay-content {
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 2rem;
-      text-align: center;
-      border-radius: 12px;
-      max-width: 600px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotateX(0deg);
-      z-index: 3;
-    }
-    .overlay-content h2 {
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
-    }
-    .overlay-content p {
-      font-size: 1.1rem;
-    }
-    .arrow {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      cursor: pointer;
-      animation: bounce 1.5s infinite;
-      z-index: 10;
-    }
-    .arrow img {
-      width: 20px;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -10px); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile App Development - Mehwar Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 187, 44, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px) scale(1.2);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-50px) translateX(-50px) scale(0.8);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-150px) translateX(100px) scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 187, 44, 0.2);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffbb2c;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .back-btn {
+            padding: 12px 30px;
+            background: rgba(255, 187, 44, 0.1);
+            border: 2px solid #ffbb2c;
+            color: #ffbb2c;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: #ffbb2c;
+            color: #0a0e27;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 187, 44, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffbb2c 0%, #ff9500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(255, 187, 44, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 40px rgba(255, 187, 44, 0.8));
+            }
+        }
+
+        .hero-icon {
+            font-size: 120px;
+            margin-bottom: 30px;
+            animation: rotate3d 4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes rotate3d {
+            0%, 100% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            25% {
+                transform: rotateY(180deg) rotateX(10deg);
+            }
+            50% {
+                transform: rotateY(360deg) rotateX(0deg);
+            }
+            75% {
+                transform: rotateY(180deg) rotateX(-10deg);
+            }
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 50px auto;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 187, 44, 0.1) 0%, transparent 70%);
+            animation: shimmer 6s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .section-title {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #ffbb2c;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ffbb2c, transparent);
+            animation: expandWidth 2s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Feature Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 187, 44, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 187, 44, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .feature-item:hover::before {
+            left: 100%;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            border-color: #ffbb2c;
+            box-shadow: 0 30px 60px rgba(255, 187, 44, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .feature-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffbb2c;
+        }
+
+        .feature-item p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        /* 3D Phone Mockup */
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            margin: 50px auto;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: floatPhone 4s ease-in-out infinite;
+        }
+
+        @keyframes floatPhone {
+            0%, 100% {
+                transform: translateY(0) rotateY(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotateY(10deg);
+            }
+            50% {
+                transform: translateY(0) rotateY(-10deg);
+            }
+            75% {
+                transform: translateY(-20px) rotateY(5deg);
+            }
+        }
+
+        .phone-frame {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 3px solid rgba(255, 187, 44, 0.3);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffbb2c 0%, #ff9500 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen-content {
+            padding: 20px;
+            color: #0a0e27;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 10px;
+            animation: popIn 0.5s ease-out backwards;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .app-icon:nth-child(1) { animation-delay: 0.1s; }
+        .app-icon:nth-child(2) { animation-delay: 0.2s; }
+        .app-icon:nth-child(3) { animation-delay: 0.3s; }
+        .app-icon:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Water Ripple Effect */
+        .ripple-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin: 50px 0;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(255, 187, 44, 0.1) 0%, transparent 100%);
+            border-radius: 20px;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 187, 44, 0.5);
+            animation: rippleEffect 3s linear infinite;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 600px;
+                height: 600px;
+                opacity: 0;
+            }
+        }
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(255, 187, 44, 0.1) 0%, rgba(255, 149, 0, 0.1) 100%);
+            border-radius: 30px;
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+
+        .cta-btn {
+            padding: 20px 50px;
+            font-size: 20px;
+            background: #ffbb2c;
+            color: #0a0e27;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 187, 44, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 187, 44, 0.5);
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .glass-card {
+                padding: 30px;
+            }
+            
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .phone-mockup {
+                width: 200px;
+                height: 400px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="background" id="background"></div>
 
+    <nav>
+        <div class="logo">Mehwar Tech</div>
+        <a href="#" class="back-btn" onclick="history.back()">← Back to Services</a>
+    </nav>
 
-  <div class="slider">
-    <div class="slide active" style="background-image: url('assets/img/app.png');">
-      <div class="overlay-content">
-        <h2>App Development</h2>
-        <p>We craft sleek, responsive mobile apps for Android & iOS with rich interfaces and user-friendly designs.</p>
-      </div>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-icon">📱</div>
+            <h1>Mobile App Development</h1>
+            <p style="font-size: 24px; color: rgba(255, 255, 255, 0.7);">Building Tomorrow's Mobile Experiences Today</p>
+        </div>
     </div>
-    <div class="slide" style="background-image: url('assets/img/web.png');">
-      <div class="overlay-content">
-        <h2>Website Development</h2>
-        <p>Custom websites tailored to your brand. Fast, responsive, and built for performance.</p>
-      </div>
-    </div>
-    <div class="slide" style="background-image: url('assets/img/cloud.png');">
-      <div class="overlay-content">
-        <h2>Cloud Integration</h2>
-        <p>Secure and scalable cloud storage & integration tailored for your enterprise growth.</p>
-      </div>
-    </div>
-    <div class="slide" style="background-image: url('assets/img/branding.png');">
-      <div class="overlay-content">
-        <h2>Digital Branding</h2>
-        <p>Creative branding and design that brings your business to life with style and impact.</p>
-      </div>
-    </div>
-    <div class="arrow" onclick="nextSlide()">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/down--v1.png" alt="Next" />
-    </div>
-  </div>
 
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
+    <div class="container">
+        <div class="glass-card">
+            <h2 class="section-title">Why Choose Our Mobile Development?</h2>
+            <p>At Mehwar Technology, we craft cutting-edge mobile applications that transform ideas into powerful digital experiences. Our expert team leverages the latest technologies to deliver apps that users love and businesses rely on.</p>
+            
+            <div class="phone-mockup">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="screen-content">
+                            <h3 style="margin-bottom: 20px;">Your App</h3>
+                            <div class="app-icon">🎯</div>
+                            <div class="app-icon">💼</div>
+                            <div class="app-icon">🚀</div>
+                            <div class="app-icon">⚡</div>
+                            <div class="app-icon">🎨</div>
+                            <div class="app-icon">🔒</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    function nextSlide() {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }
-  </script>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Stunning UI/UX</h3>
+                    <p>Beautiful, intuitive interfaces that users love. Every pixel is crafted with care to ensure the best user experience.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Native Performance</h3>
+                    <p>Lightning-fast apps built with native technologies for iOS and Android. Smooth animations and instant responses.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Enterprise-grade security with encryption, secure APIs, and data protection that you can trust.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Cross-Platform</h3>
+                    <p>Reach more users with apps that work seamlessly across iOS, Android, and web platforms.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Push Notifications</h3>
+                    <p>Keep users engaged with intelligent push notifications and real-time updates.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Understand your users with powerful analytics and actionable insights.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ripple-container" id="rippleContainer">
+            <div style="padding: 50px; text-align: center;">
+                <h2 style="font-size: 36px; margin-bottom: 20px;">Creating Ripples in Mobile Innovation</h2>
+                <p>Every app we build makes waves in its industry</p>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="section-title">Our Development Process</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💡</div>
+                    <h3>Ideation</h3>
+                    <p>We start by understanding your vision and goals, crafting a strategy that aligns with your business objectives.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Design</h3>
+                    <p>Our designers create beautiful mockups and prototypes that bring your ideas to life.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Development</h3>
+                    <p>Expert developers build your app using cutting-edge technologies and best practices.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Testing</h3>
+                    <p>Rigorous testing ensures your app is bug-free and performs flawlessly.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Launch</h3>
+                    <p>We handle the entire deployment process, getting your app live on app stores.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">📈</div>
+                    <h3>Growth</h3>
+                    <p>Ongoing support and updates to help your app evolve and grow with your business.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 style="font-size: 48px; margin-bottom: 20px;">Ready to Build Your App?</h2>
+            <p style="font-size: 20px; margin-bottom: 40px;">Let's turn your mobile app idea into reality</p>
+            <button class="cta-btn" onclick="alert('Contact form would open here!')">Start Your Project</button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        const background = document.getElementById('background');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 100 + 50;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            background.appendChild(particle);
+        }
+
+        // Create ripple effect
+        const rippleContainer = document.getElementById('rippleContainer');
+        setInterval(() => {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = Math.random() * 100 + '%';
+            ripple.style.top = Math.random() * 100 + '%';
+            rippleContainer.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 3000);
+        }, 800);
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.glass-card');
+            parallaxElements.forEach((el, index) => {
+                const speed = 0.1 + (index * 0.05);
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // 3D tilt effect on feature cards
+        document.querySelectorAll('.feature-item').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    </script>
 </body>
 </html>
