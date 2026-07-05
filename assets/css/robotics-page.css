@@ -1,0 +1,496 @@
+/* Robotics & Automation — premium theme */
+
+:root {
+  --rb-accent: #e80368;
+  --rb-accent-2: #5578ff;
+  --rb-cyan: #00f0ff;
+  --rb-gold: #d4af37;
+}
+
+/* ── Hero ── */
+.robotics-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+.robot-hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--rb-accent) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--rb-accent) 8%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 20%, transparent 75%);
+  animation: gridDrift 20s linear infinite;
+}
+
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to { background-position: 48px 48px; }
+}
+
+.robot-hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, transparent 0%, rgba(10, 14, 39, 0.55) 100%),
+    linear-gradient(180deg, rgba(10, 14, 39, 0.3) 0%, transparent 30%, rgba(10, 14, 39, 0.85) 100%);
+}
+
+.robot-hero-scan {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.robot-hero-scan::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rb-cyan), transparent);
+  box-shadow: 0 0 24px var(--rb-cyan);
+  animation: heroScan 4s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+@keyframes heroScan {
+  0% { top: 15%; opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { top: 85%; opacity: 0; }
+}
+
+.robot-3d-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+}
+
+.robot-3d-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.robotics-hero .hero-content-wrap {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 0 20px;
+  max-width: 720px;
+  animation: heroContentIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  opacity: 1;
+}
+
+@keyframes heroContentIn {
+  from { transform: translateY(24px); opacity: 0.7; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.robot-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid color-mix(in srgb, var(--rb-accent) 40%, transparent);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+}
+
+.robot-hero-badge i {
+  color: var(--rb-cyan);
+  font-size: 0.9rem;
+}
+
+.robotics-hero h1 {
+  font-size: clamp(2rem, 7vw, 3.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.robotics-hero .tagline {
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 520px;
+}
+
+.robot-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.robot-stat-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 88px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.robot-stat-pill:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--rb-accent) 50%, transparent);
+}
+
+.robot-stat-pill strong {
+  font-size: 1.1rem;
+  color: var(--rb-cyan);
+  line-height: 1.2;
+}
+
+.robot-stat-pill span {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.robotics-hero .scroll-hint {
+  z-index: 5;
+}
+
+/* ── Showcase ── */
+.robot-showcase {
+  margin: 40px 0;
+  padding: 36px 24px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid color-mix(in srgb, var(--rb-accent) 25%, transparent);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.robot-showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rb-accent), var(--rb-accent-2), var(--rb-cyan));
+}
+
+.robot-showcase-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.robot-showcase-head .label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rb-accent);
+  margin-bottom: 8px;
+}
+
+.robot-showcase-head h3 {
+  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.robot-showcase-head p {
+  font-size: 0.9rem;
+  color: var(--sp-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.robot-char-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.robot-char-card {
+  background: linear-gradient(160deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 20px;
+  padding: 20px 14px;
+  text-align: center;
+  border: 1px solid color-mix(in srgb, var(--rb-accent) 18%, transparent);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.robot-char-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--rb-accent) 12%, transparent), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+}
+
+.robot-char-card:hover {
+  transform: translateY(-10px);
+  border-color: color-mix(in srgb, var(--rb-accent) 45%, transparent);
+  box-shadow: 0 20px 48px color-mix(in srgb, var(--rb-accent) 20%, transparent);
+}
+
+.robot-char-card:hover::after { opacity: 1; }
+
+.robot-char-visual {
+  width: 100%;
+  height: 130px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: radial-gradient(ellipse 80% 70% at 50% 60%, color-mix(in srgb, var(--rb-accent) 10%, transparent), transparent);
+}
+
+.robot-model-preview {
+  width: 100%;
+  height: 100%;
+  min-height: 130px;
+  position: relative;
+}
+
+.robot-model-preview .robot-webgl-canvas,
+.robot-viewport .robot-webgl-canvas,
+#robot-canvas-mini .robot-webgl-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.robot-char-icon {
+  background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+}
+
+.robot-char-icon i {
+  font-size: 2.8rem;
+  color: var(--rb-cyan);
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--rb-cyan) 45%, transparent));
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.robot-char-featured {
+  border-color: color-mix(in srgb, var(--rb-accent) 35%, transparent);
+}
+
+.robot-preview-loader {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.robot-preview-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.robot-preview-loader span {
+  width: 28px;
+  height: 28px;
+  border: 2px solid color-mix(in srgb, var(--rb-cyan) 25%, transparent);
+  border-top-color: var(--rb-cyan);
+  border-radius: 50%;
+  animation: robotSpin 0.8s linear infinite;
+}
+
+@keyframes robotSpin {
+  to { transform: rotate(360deg); }
+}
+
+.robot-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 280px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid color-mix(in srgb, var(--rb-cyan) 20%, transparent);
+}
+
+.robot-3d-stage.is-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-top-color: var(--rb-cyan);
+  border-radius: 50%;
+  animation: robotSpin 0.8s linear infinite;
+  z-index: 3;
+}
+
+.robot-char-card h4 {
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.robot-char-card p {
+  font-size: 0.75rem;
+  color: var(--sp-muted);
+  line-height: 1.45;
+}
+
+.robot-char-card .card-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 10px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rb-cyan);
+  border: 1px solid color-mix(in srgb, var(--rb-cyan) 35%, transparent);
+  border-radius: 50px;
+}
+
+/* ── 3D demo strip ── */
+.robot-3d-strip {
+  border-radius: 24px;
+  overflow: hidden;
+  margin: 32px 0;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, color-mix(in srgb, var(--rb-accent) 15%, transparent), transparent),
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+  border: 1px solid color-mix(in srgb, var(--rb-accent-2) 25%, transparent);
+  position: relative;
+}
+
+.robot-3d-strip-label {
+  text-align: center;
+  margin-bottom: 16px;
+  z-index: 1;
+}
+
+.robot-3d-strip-label h3 {
+  font-size: 1.15rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.robot-3d-strip-label p {
+  font-size: 0.82rem;
+  color: var(--sp-muted);
+}
+
+#robot-canvas-mini {
+  width: 100%;
+  max-width: 520px;
+  height: 280px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+#robot-canvas-mini canvas {
+  border-radius: 16px;
+}
+
+/* ── Premium feature cards (robotics page) ── */
+.robotics-page .feature-card .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--rb-accent) 25%, transparent), color-mix(in srgb, var(--rb-accent-2) 15%, transparent));
+  border: 1px solid color-mix(in srgb, var(--rb-accent) 30%, transparent);
+  font-size: 1.35rem;
+  margin-bottom: 4px;
+}
+
+.robotics-page .feature-card .icon i {
+  font-size: 1.25rem;
+  color: var(--rb-cyan);
+}
+
+.robotics-page .process-step {
+  border-left-color: color-mix(in srgb, var(--rb-accent) 40%, transparent);
+}
+
+.robotics-page .process-step::before {
+  background: linear-gradient(135deg, var(--rb-accent), var(--rb-accent-2));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--rb-accent) 50%, transparent);
+}
+
+.robotics-page .cta-block {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--rb-accent) 18%, transparent), color-mix(in srgb, var(--rb-accent-2) 12%, transparent));
+  border: 1px solid color-mix(in srgb, var(--rb-accent) 30%, transparent);
+}
+
+@media (min-width: 768px) {
+  .robot-char-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .robot-char-visual { height: 150px; }
+  .robot-hero-stats { gap: 14px; }
+  .robot-stat-pill { min-width: 100px; padding: 14px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .robot-hero-grid,
+  .robot-hero-scan::after,
+  .robotics-hero .hero-content-wrap,
+  .robot-char-icon i,
+  .robot-preview-loader span {
+    animation: none;
+  }
+}

@@ -1,0 +1,6 @@
+assets/robots/source/Shelly.fbx filter=lfs diff=lfs merge=lfs -text
+assets/robots/textures/1001_Base_color.png filter=lfs diff=lfs merge=lfs -text
+assets/robots/textures/1001_Roughness.png filter=lfs diff=lfs merge=lfs -text
+assets/robots/textures/1001_Emissive.png filter=lfs diff=lfs merge=lfs -text
+assets/robots/textures/1001_Metallic.png filter=lfs diff=lfs merge=lfs -text
+assets/mehwarintro.mp4 filter=lfs diff=lfs merge=lfs -text

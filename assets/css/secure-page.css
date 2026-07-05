@@ -1,0 +1,206 @@
+/* Secure Architecture — animated SVG hero (no external Lottie dependency) */
+
+.security-hero {
+  gap: 20px;
+}
+
+.security-visual {
+  position: relative;
+  width: min(300px, 78vw);
+  height: min(300px, 78vw);
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.security-visual svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.security-visual .shield-glow {
+  fill: color-mix(in srgb, var(--sp-accent) 35%, transparent);
+  filter: blur(18px);
+  transform-origin: center;
+  animation: secPulse 3s ease-in-out infinite;
+}
+
+.security-visual .shield-body {
+  fill: url(#shieldGrad);
+  stroke: color-mix(in srgb, var(--sp-accent) 80%, #fff);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--sp-accent) 55%, transparent));
+  animation: secFloat 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.security-visual .lock-body {
+  fill: rgba(255, 255, 255, 0.95);
+}
+
+.security-visual .lock-shackle {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.95);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.security-visual .orbit-ring {
+  fill: none;
+  stroke: color-mix(in srgb, var(--sp-accent) 45%, transparent);
+  stroke-width: 1.5;
+  stroke-dasharray: 8 10;
+  transform-origin: center;
+  animation: secSpin 18s linear infinite;
+}
+
+.security-visual .orbit-ring-2 {
+  animation-direction: reverse;
+  animation-duration: 24s;
+  stroke-dasharray: 4 14;
+  opacity: 0.6;
+}
+
+.security-visual .node {
+  fill: var(--sp-accent);
+  filter: drop-shadow(0 0 6px var(--sp-accent));
+  animation: secNodePulse 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.security-visual .node-2 { animation-delay: 0.6s; }
+.security-visual .node-3 { animation-delay: 1.2s; }
+.security-visual .node-4 { animation-delay: 1.8s; }
+
+.security-visual .scan-beam {
+  fill: url(#scanGrad);
+  transform-origin: 120px 120px;
+  animation: secScan 3.5s linear infinite;
+  opacity: 0.55;
+}
+
+.security-visual .data-line {
+  stroke: color-mix(in srgb, var(--sp-accent) 70%, #fff);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 8;
+  animation: secDash 1.2s linear infinite;
+  opacity: 0.7;
+}
+
+.security-visual .data-line-2 { animation-delay: 0.4s; }
+.security-visual .data-line-3 { animation-delay: 0.8s; }
+
+.security-visual .check-badge {
+  fill: #29cc61;
+  animation: secBadgePop 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes secPulse {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+}
+
+@keyframes secFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes secSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes secNodePulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+
+@keyframes secScan {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes secDash {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -28; }
+}
+
+@keyframes secBadgePop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+/* Mid-page security strip */
+.security-strip {
+  min-height: 240px;
+  padding: 24px 16px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--sp-accent) 12%, transparent), rgba(255,255,255,0.02));
+}
+
+.security-strip-inner {
+  width: min(520px, 100%);
+  margin: 0 auto;
+}
+
+.security-strip svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.security-strip .firewall-bar {
+  fill: color-mix(in srgb, var(--sp-accent) 25%, #0a0e27);
+  stroke: color-mix(in srgb, var(--sp-accent) 50%, transparent);
+  stroke-width: 1.5;
+}
+
+.security-strip .packet {
+  fill: var(--sp-accent);
+  filter: drop-shadow(0 0 4px var(--sp-accent));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.security-strip .packet-1 { animation: secPacket 2.4s ease-in-out infinite; }
+.security-strip .packet-2 { animation: secPacket 2.4s ease-in-out 0.8s infinite; }
+.security-strip .packet-3 { animation: secPacket 2.4s ease-in-out 1.6s infinite; }
+
+.security-strip .gate-shield {
+  fill: url(#stripShieldGrad);
+  animation: secGatePulse 2s ease-in-out infinite;
+  transform-origin: 260px 80px;
+}
+
+.security-strip .status-dot {
+  fill: #29cc61;
+  animation: secStatusBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes secPacket {
+  0% { transform: translateX(-40px); opacity: 0; }
+  15% { opacity: 1; }
+  45% { transform: translateX(180px); opacity: 1; }
+  55% { transform: translateX(200px); opacity: 0.3; }
+  70% { transform: translateX(320px); opacity: 1; }
+  100% { transform: translateX(420px); opacity: 0; }
+}
+
+@keyframes secGatePulse {
+  0%, 100% { filter: drop-shadow(0 0 8px color-mix(in srgb, var(--sp-accent) 40%, transparent)); }
+  50% { filter: drop-shadow(0 0 20px color-mix(in srgb, var(--sp-accent) 80%, transparent)); }
+}
+
+@keyframes secStatusBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (min-width: 768px) {
+  .security-visual {
+    width: min(340px, 42vw);
+    height: min(340px, 42vw);
+  }
+}

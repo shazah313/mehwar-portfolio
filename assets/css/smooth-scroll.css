@@ -1,0 +1,293 @@
+/* Premium smooth scroll & reveal animations */
+
+html.lenis,
+html.lenis.lenis-smooth {
+  height: auto;
+  scroll-behavior: auto !important;
+}
+
+html.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+html.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body.has-smooth-scroll {
+  overflow-x: hidden;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 10001;
+  pointer-events: none;
+  background: linear-gradient(90deg, #040677, #df1529, #d4af37);
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+  box-shadow: 0 0 16px color-mix(in srgb, #df1529 35%, transparent);
+  transition: height 0.35s ease, box-shadow 0.35s ease;
+}
+
+body.is-scrolling-fast .scroll-progress {
+  height: 4px;
+  box-shadow: 0 0 28px color-mix(in srgb, #df1529 55%, transparent);
+}
+
+.scroll-progress-glow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(223, 21, 41, 0.55) 0%, transparent 70%);
+  pointer-events: none;
+  transition: left 0.12s linear;
+  opacity: 0.85;
+}
+
+/* Scroll hint */
+.scroll-hint-indicator {
+  position: fixed;
+  bottom: max(24px, env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 50px;
+  background: rgba(4, 6, 119, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  animation: scrollHintBob 2.4s ease-in-out infinite;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.6s ease;
+}
+
+.scroll-hint-indicator i {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.scroll-hint-indicator.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(16px);
+  animation: none;
+}
+
+@keyframes scrollHintBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Section reveal (premium blur + scale) */
+section:not(#hero):not(.page-banner):not(.page-hero-strip):not(.premium-banner):not(.service-hero),
+.story-intro-band,
+.leadership-layout,
+.stories-wrap > .story-card,
+.service-wrap > .glass-card,
+.robot-showcase,
+.robot-3d-strip {
+  opacity: 0;
+  transform: translateY(56px) scale(0.975);
+  filter: blur(8px);
+  transition:
+    opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+section.page-banner,
+section.page-hero-strip,
+section.premium-banner,
+section.scroll-revealed,
+#hero,
+.page-banner,
+.page-hero-strip,
+.premium-banner,
+.service-hero,
+.story-intro-band.scroll-revealed,
+.leadership-layout.scroll-revealed,
+.stories-wrap > .story-card.scroll-revealed,
+.service-wrap > .glass-card.scroll-revealed,
+.robot-showcase.scroll-revealed,
+.robot-3d-strip.scroll-revealed {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Stagger children inside revealed sections */
+section.scroll-revealed .features-item,
+section.scroll-revealed .info-item,
+section.scroll-revealed .logo-card,
+section.scroll-revealed .faq-item,
+section.scroll-revealed .icon-box,
+.story-intro-band.scroll-revealed .story-stat {
+  animation: revealChild 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+section.scroll-revealed .features-item:nth-child(2),
+section.scroll-revealed .info-item:nth-child(2),
+section.scroll-revealed .icon-box:nth-child(2),
+.story-intro-band.scroll-revealed .story-stat:nth-child(2) { animation-delay: 0.07s; }
+
+section.scroll-revealed .features-item:nth-child(3),
+section.scroll-revealed .info-item:nth-child(3),
+section.scroll-revealed .icon-box:nth-child(3),
+.story-intro-band.scroll-revealed .story-stat:nth-child(3) { animation-delay: 0.14s; }
+
+section.scroll-revealed .features-item:nth-child(4),
+section.scroll-revealed .info-item:nth-child(4),
+section.scroll-revealed .icon-box:nth-child(4),
+.story-intro-band.scroll-revealed .story-stat:nth-child(4) { animation-delay: 0.21s; }
+
+@keyframes revealChild {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Parallax layers — GPU hints */
+.hero-bg,
+.page-hero-bg,
+.robot-hero-grid,
+.service-bg,
+.hero-orb,
+.orb,
+.hero-waves {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Enhanced AOS feel */
+[data-aos] {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Scroll-to-top premium */
+.scroll-top {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.scroll-top.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-top:not(.active) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.88);
+}
+
+/* Card hover lift — services grid only (not details parallax rows) */
+#features .features-item,
+.logo-card,
+.glass-card,
+.leader-profile,
+.v-timeline-card,
+.story-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+/* Card hover lift — desktop pointer only (see @media hover below) */
+
+/* Reduced motion */
+html.reduced-motion,
+html.reduced-motion * {
+  scroll-behavior: auto !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+html.reduced-motion section,
+html.reduced-motion .story-intro-band,
+html.reduced-motion .leadership-layout,
+html.reduced-motion .story-card,
+html.reduced-motion .glass-card {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+@media (max-width: 767px) {
+  section:not(#hero):not(.page-banner):not(.page-hero-strip):not(.premium-banner):not(.service-hero),
+  .story-intro-band,
+  .leadership-layout,
+  .stories-wrap > .story-card,
+  .service-wrap > .glass-card,
+  .robot-showcase,
+  .robot-3d-strip {
+    filter: blur(0);
+    transform: translateY(20px) scale(0.99);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #features .features-item:hover,
+  .logo-card:hover,
+  .glass-card:hover,
+  .leader-profile:hover,
+  .v-timeline-card:hover,
+  .story-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  #features .features-item:hover,
+  .logo-card:hover,
+  .glass-card:hover {
+    transform: none;
+    box-shadow: inherit;
+  }
+}
+
+html.reduced-motion .scroll-progress,
+html.no-lenis-scroll .scroll-progress,
+html.reduced-motion .scroll-hint-indicator {
+  display: none;
+}
+
+/* Prevent saving / dragging media */
+img,
+video,
+picture {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}

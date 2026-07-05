@@ -1,0 +1,443 @@
+/* AlBishara product page — mobile & touch polish */
+
+/* ── Mobile header & nav ── */
+.product-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(0, 102, 204, 0.08);
+  color: #1d1d1f;
+  font-size: 1.5rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.product-header .header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 12px;
+}
+
+.product-header nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 0;
+}
+
+.product-header nav a {
+  margin-left: 24px;
+}
+
+.hero-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1acc8d;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  background: rgba(26, 204, 141, 0.15);
+  border-radius: 100px;
+  border: 1px solid rgba(26, 204, 141, 0.35);
+}
+
+.hero-stat i {
+  font-size: 1.1rem;
+}
+
+/* ── Tablet & mobile ── */
+@media (max-width: 991px) {
+  .product-header {
+    padding: 12px 0;
+  }
+
+  .product-header .header-inner {
+    padding: 0 16px;
+  }
+
+  .product-header .logo {
+    font-size: 1.1rem;
+    min-width: 0;
+  }
+
+  .product-header .logo img {
+    height: 32px;
+  }
+
+  .product-header .logo span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .product-menu-toggle {
+    display: flex;
+  }
+
+  .product-header nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(280px, 88vw);
+    height: 100dvh;
+    height: 100vh;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 72px 20px 24px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+    z-index: 1001;
+    overflow-y: auto;
+  }
+
+  .product-header nav.is-open {
+    display: flex;
+  }
+
+  .product-header nav a {
+    margin: 0;
+    padding: 14px 0;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .product-header nav a::after {
+    display: none;
+  }
+
+  .product-nav-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    border: none;
+    cursor: pointer;
+  }
+
+  .product-nav-backdrop.is-open {
+    display: block;
+  }
+
+  .product-hero {
+    min-height: auto;
+    padding: 40px 0 32px;
+    overflow-x: clip;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: unset;
+    gap: 28px;
+    text-align: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .hero-text {
+    order: 1;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .phone-mockup-container {
+    order: 2;
+    height: auto;
+    min-height: 0;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    perspective: none;
+  }
+
+  .platform-switcher {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .download-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .feature-content.active {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .feature-image {
+    order: -1;
+    height: 240px;
+  }
+
+  .section-title h2 {
+    font-size: 1.75rem;
+  }
+
+  .features-section,
+  .platform-details,
+  .cta-section {
+    padding: 56px 0;
+  }
+}
+
+/* ── Small phones ── */
+@media (max-width: 767px) {
+
+  .hero-text h1 {
+    font-size: clamp(2rem, 9vw, 2.5rem);
+    margin-bottom: 12px;
+  }
+
+  .hero-text .tagline {
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    line-height: 1.45;
+  }
+
+  .hero-stat {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .platform-switcher {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px;
+    gap: 8px;
+    padding: 8px;
+    margin-bottom: 24px;
+  }
+
+  .platform-btn {
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transform: none !important;
+  }
+
+  .platform-btn.active {
+    transform: none !important;
+  }
+
+  .platform-btn i {
+    font-size: 1rem;
+  }
+
+  .download-btn {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .phone-mockup-container {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .phone-mockup {
+    width: min(260px, 78vw);
+    height: auto;
+    aspect-ratio: 320 / 650;
+    max-height: 54vh;
+    transform: none !important;
+    animation: none !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .phone-mockup.rotate-left,
+  .phone-mockup.rotate-right,
+  .phone-mockup.rotate-center {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .dynamic-island {
+    width: 72px;
+    height: 22px;
+    top: 14px;
+  }
+
+  .screenshot-indicators {
+    bottom: 16px;
+    padding: 6px 12px;
+    gap: 8px;
+  }
+
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .indicator-dot.active {
+    width: 22px;
+  }
+
+  .features-section,
+  .platform-details,
+  .cta-section {
+    padding: 48px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .section-title {
+    margin-bottom: 32px;
+  }
+
+  .section-title h2 {
+    font-size: 1.65rem;
+    line-height: 1.2;
+  }
+
+  .section-title p {
+    font-size: 1rem;
+  }
+
+  .features-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .feature-tab {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    text-align: center;
+    transform: none !important;
+  }
+
+  .feature-tab.active {
+    transform: none !important;
+  }
+
+  .feature-text h3 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .feature-text p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .feature-list li {
+    font-size: 0.95rem;
+  }
+
+  .feature-image {
+    height: 200px;
+    border-radius: 16px;
+  }
+
+  .feature-image i {
+    font-size: 72px;
+  }
+
+  .platform-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .platform-card {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .platform-card i {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+  }
+
+  .platform-card h4 {
+    font-size: 1rem;
+  }
+
+  .platform-card p {
+    font-size: 0.8rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.65rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    padding: 0 8px;
+  }
+
+  .cta-section .download-btn {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .platform-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .platform-btn span {
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-mockup,
+  .phone-mockup.rotate-center,
+  .platform-btn,
+  .feature-tab {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

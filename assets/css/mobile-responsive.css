@@ -1,0 +1,298 @@
+/* Mehwar Technology — mobile & touch responsive fixes */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+  overflow-x: clip;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Header & nav ── */
+@media (max-width: 575px) {
+  .header .logo h1 {
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+
+  .header .logo img {
+    max-height: 26px;
+  }
+
+  .header .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .navmenu ul {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+
+  .navmenu a {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+}
+
+/* ── Homepage hero ── */
+@media (max-width: 767px) {
+  #hero {
+    overflow-x: clip;
+    padding-top: 88px;
+  }
+
+  #hero .hero-cta-row {
+    width: 100%;
+  }
+
+  .hero .btn-get-started,
+  .hero .btn-watch-video {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero .btn-watch-video {
+    margin-left: 0 !important;
+  }
+
+  .hero .hero-img {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .details .features-item h3 {
+    font-size: 1.35rem;
+    line-height: 1.35;
+  }
+
+  .details .features-item + .features-item {
+    margin-top: 36px;
+  }
+
+  #details .features-item .row {
+    text-align: center;
+  }
+
+  #details .features-item ul {
+    text-align: left;
+    display: inline-block;
+  }
+
+  .section-title {
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  section,
+  .section {
+    padding: 48px 0;
+  }
+}
+
+/* ── Touch: replace sticky hover with tap feedback ── */
+@media (hover: none), (pointer: coarse) {
+  .features .features-item:hover,
+  #features .features-item:hover,
+  .about .icon-box:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+  }
+
+  .features .features-item:active,
+  #features .features-item:active,
+  .about .icon-box:active,
+  .glass-card:active,
+  .logo-card:active {
+    transform: scale(0.98);
+    transition: transform 0.15s ease;
+  }
+
+  .details .features-item {
+    will-change: auto;
+  }
+
+  #hero .hero-img img {
+    will-change: transform;
+  }
+}
+
+/* ── Scroll UI ── */
+@media (max-width: 767px) {
+  .scroll-hint-indicator {
+    font-size: 0.62rem;
+    padding: 8px 14px;
+    bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 16px));
+    max-width: calc(100vw - 32px);
+    white-space: nowrap;
+  }
+
+  .scroll-top {
+    bottom: max(15px, env(safe-area-inset-bottom, 15px));
+    right: max(12px, env(safe-area-inset-right, 12px));
+  }
+}
+
+/* ── Service pages ── */
+@media (max-width: 767px) {
+  .service-hero {
+    min-height: min(100svh, 720px);
+    padding: 88px 16px 56px;
+  }
+
+  .service-nav {
+    padding: 12px 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .service-nav .brand {
+    font-size: 0.82rem;
+    max-width: calc(100% - 120px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .service-nav .back-btn {
+    font-size: 0.72rem;
+    padding: 8px 12px;
+  }
+
+  .service-wrap {
+    padding: 0 12px 64px;
+  }
+
+  .glass-card {
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  .service-bg .orb {
+    opacity: 0.1 !important;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .scroll-hint {
+    bottom: 20px;
+  }
+}
+
+/* ── Robotics page ── */
+@media (max-width: 767px) {
+  .robotics-hero {
+    min-height: min(100svh, 820px);
+    padding-top: 72px;
+  }
+
+  .robot-3d-stage {
+    min-height: min(100svh, 820px);
+  }
+
+  .robotics-hero .hero-content-wrap {
+    padding: 0 16px;
+  }
+
+  .robot-hero-stats {
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .robot-stat-pill {
+    min-width: 72px;
+    padding: 10px 12px;
+    flex: 1 1 calc(50% - 8px);
+    max-width: 140px;
+  }
+
+  .robot-char-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .robot-char-visual {
+    height: 120px;
+  }
+
+  .robot-3d-strip {
+    padding: 24px 14px;
+    min-height: auto;
+  }
+
+  #robot-canvas-mini {
+    height: 220px;
+  }
+}
+
+/* ── Company pages ── */
+@media (max-width: 767px) {
+  .page-hero-strip {
+    padding: 80px 16px 36px;
+  }
+
+  .page-hero-copy h1 {
+    font-size: clamp(1.45rem, 6.5vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .page-hero-row {
+    gap: 20px;
+  }
+
+  .cp-header {
+    padding: 12px 14px;
+  }
+}
+
+/* ── Touch targets ── */
+@media (pointer: coarse) {
+  .btn-get-started,
+  .btn-watch-video,
+  .cta-btn,
+  .back-btn,
+  .mobile-nav-toggle,
+  .scroll-top {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@media (max-width: 767px) {
+  .features .features-item:hover,
+  .features .features-item:hover::before {
+    transform: none !important;
+    box-shadow: inherit !important;
+    left: -100% !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .animated,
+  .scroll-hint-indicator,
+  .cta-btn,
+  .service-bg .orb,
+  .scroll-hint,
+  .heroGlow,
+  .shimmer,
+  .scroll-hint {
+    animation: none !important;
+  }
+}

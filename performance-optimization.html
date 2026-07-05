@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Optimization - Mehwar Technology</title>
+  <meta name="description" content="Slow software loses users and revenue. We diagnose bottlenecks and optimize every layer — frontend rendering, API response times, database queries, and inf...">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/css/service-pages.css" rel="stylesheet">
+  <link href="assets/css/performance-page.css" rel="stylesheet">
+  <link href="assets/css/smooth-scroll.css" rel="stylesheet">
+  <link href="assets/css/mobile-responsive.css" rel="stylesheet">
+  <style>:root { --sp-accent: #ffa76e; }</style>
+</head>
+<body class="service-page">
+  <div class="service-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+
+  <nav class="service-nav">
+    <a href="index.html" class="brand"><img src="assets/img/favicon.ico" alt=""> Mehwar Technology</a>
+    <a href="index.html#features" class="back-btn">← All Services</a>
+  </nav>
+
+  <section class="service-hero perf-hero">
+    <div class="perf-visual" aria-hidden="true">
+      <svg viewBox="0 0 240 240" role="img" aria-label="Animated performance gauge">
+        <defs>
+          <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffa76e"/>
+            <stop offset="100%" stop-color="#ff6b35"/>
+          </linearGradient>
+          <linearGradient id="barGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#ff6b35"/>
+            <stop offset="100%" stop-color="#ffa76e"/>
+          </linearGradient>
+        </defs>
+        <path class="gauge-bg" d="M 40 130 A 80 80 0 1 1 200 130"/>
+        <path class="gauge-fill" d="M 40 130 A 80 80 0 1 1 200 130"/>
+        <line class="gauge-needle" x1="120" y1="130" x2="120" y2="60"/>
+        <circle cx="120" cy="130" r="8" fill="#ffa76e"/>
+        <text class="speed-text" x="120" y="118">99%</text>
+        <text class="speed-label" x="120" y="148">FASTER</text>
+        <path class="bolt" d="M128 24 L118 52 H128 L112 80 L132 48 H122 Z"/>
+        <rect class="perf-bar perf-bar-1" x="30" y="175" width="18" height="40" rx="4"/>
+        <rect class="perf-bar perf-bar-2" x="58" y="165" width="18" height="50" rx="4"/>
+        <rect class="perf-bar perf-bar-3" x="86" y="155" width="18" height="60" rx="4"/>
+        <rect class="perf-bar perf-bar-4" x="114" y="168" width="18" height="47" rx="4"/>
+      </svg>
+    </div>
+    <h1>Performance Optimization</h1>
+    <p class="tagline">Speed That Keeps Users Engaged & Revenue Growing</p>
+    <div class="scroll-hint"><i class="bi bi-chevron-down"></i></div>
+  </section>
+
+  <div class="service-wrap">
+    <div class="glass-card" data-aos="fade-up">
+      <h2 class="section-title">Why Choose Us</h2>
+      <p>Slow software loses users and revenue. We diagnose bottlenecks and optimize every layer — frontend rendering, API response times, database queries, and infrastructure — to deliver sub-second experiences at any scale.</p>
+      <div class="features-grid">
+    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+      <span class="icon">⚡</span>
+      <h3>Frontend Optimization</h3>
+      <p>Code splitting, lazy loading, image optimization, and render performance tuning.</p>
+    </div>
+    <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
+      <span class="icon">🎯</span>
+      <h3>Backend Tuning</h3>
+      <p>Query optimization, caching strategies, and async processing pipelines.</p>
+    </div>
+    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+      <span class="icon">🔧</span>
+      <h3>CDN & Edge</h3>
+      <p>Global content delivery, edge computing, and geographic load balancing.</p>
+    </div>
+    <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
+      <span class="icon">🛡️</span>
+      <h3>Load Testing</h3>
+      <p>Stress tests simulating millions of users to find breaking points before launch.</p>
+    </div>
+    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+      <span class="icon">📊</span>
+      <h3>Database Scaling</h3>
+      <p>Indexing, sharding, read replicas, and query plan optimization.</p>
+    </div>
+    <div class="feature-card" data-aos="fade-up" data-aos-delay="350">
+      <span class="icon">🚀</span>
+      <h3>Monitoring</h3>
+      <p>Real-time APM, alerting, and performance dashboards for proactive fixes.</p>
+    </div></div>
+    </div>
+
+    <div class="anim-strip perf-strip" data-aos="zoom-in">
+      <div class="perf-strip-inner">
+        <div class="metric-row">
+          <div class="metric"><strong>&lt;1s</strong><span>Load Time</span></div>
+          <div class="metric"><strong>99</strong><span>Lighthouse</span></div>
+          <div class="metric"><strong>10x</strong><span>Faster</span></div>
+        </div>
+        <svg viewBox="0 0 480 100" role="img" aria-label="Performance chart">
+          <rect class="chart-bar chart-bar-1" x="20" y="50" width="40" height="40" rx="4"/>
+          <rect class="chart-bar chart-bar-2" x="90" y="35" width="40" height="55" rx="4"/>
+          <rect class="chart-bar chart-bar-3" x="160" y="20" width="40" height="70" rx="4"/>
+          <rect class="chart-bar chart-bar-4" x="230" y="30" width="40" height="60" rx="4"/>
+          <rect class="chart-bar chart-bar-5" x="300" y="10" width="40" height="80" rx="4"/>
+          <polyline points="40,45 110,30 180,15 250,25 320,5" fill="none" stroke="#ffa76e" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="glass-card" data-aos="fade-up">
+      <h2 class="section-title">Our Process</h2>
+      <div class="process-steps">
+    <div class="process-step" data-step="1" data-aos="fade-left" data-aos-delay="0">
+      <div><h4>Profile</h4><p>Benchmark current performance and identify critical bottlenecks.</p></div>
+    </div>
+    <div class="process-step" data-step="2" data-aos="fade-left" data-aos-delay="100">
+      <div><h4>Analyze</h4><p>Deep dive into code, queries, network, and infrastructure metrics.</p></div>
+    </div>
+    <div class="process-step" data-step="3" data-aos="fade-left" data-aos-delay="200">
+      <div><h4>Optimize</h4><p>Targeted fixes with measurable before/after performance gains.</p></div>
+    </div>
+    <div class="process-step" data-step="4" data-aos="fade-left" data-aos-delay="300">
+      <div><h4>Validate</h4><p>Continuous monitoring and regression testing to maintain speed.</p></div>
+    </div></div>
+    </div>
+
+    <div class="cta-block" data-aos="fade-up">
+      <h2>Ready to Get Started?</h2>
+      <p>Let's build something extraordinary together. Contact Mehwar Technology today.</p>
+      <a href="index.html#contact" class="cta-btn">Start Your Project</a>
+    </div>
+  </div>
+
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/smooth-scroll.js"></script>
+  <script src="assets/js/service-pages.js"></script>
+</body>
+</html>
