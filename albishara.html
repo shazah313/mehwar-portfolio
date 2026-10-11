@@ -1273,6 +1273,14 @@
         setTimeout(() => {
           downloadLink.textContent = data.text;
           downloadLink.href = data.link;
+          downloadLink.removeAttribute('download');
+          if (data.link && data.link !== '#') {
+            downloadLink.target = '_blank';
+            downloadLink.rel = 'noopener noreferrer';
+          } else {
+            downloadLink.removeAttribute('target');
+            downloadLink.removeAttribute('rel');
+          }
           downloadLink.style.transform = 'scale(1)';
         }, 150);
         
